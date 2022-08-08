@@ -1,12 +1,29 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { PagesComponent } from './pages.component';
+import { HomeComponent as HomePage } from './home/home.component';
+import { UserListComponent as UserListPage } from './user-list/user-list.component';
+import { AdminGuard } from '../core/guards';
 
+const routes: Routes = [
+  {
+    path: '',
 
-
+    component: PagesComponent,
+    children: [
+      { path: 'home',  component: HomePage },
+      {
+        path: 'user-list',
+        component: UserListPage,
+        canLoad: [AdminGuard],
+        canActivate: [AdminGuard],
+      },
+      {path:'',pathMatch:'full',redirectTo:'home'}
+    ],
+  },
+];
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PagesRoutingModule { }

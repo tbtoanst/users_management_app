@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
+
 @NgModule({
   declarations: [
     MenuBarComponent

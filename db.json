@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "email": "nhut@gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "email": "loc@gmail.com",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "email": "quan@gmail.com",
+      "password": "123456",
+      "id": 3
+    },
+    {
+      "email": "anh@gmail.com",
+      "password": "123456",
+      "id": 4
+    },
+    {
+      "email": "khuong@gmail.com",
+      "password": "123456",
+      "id": 5
+    },
+    {
+      "email": "dai@gmail.com",
+      "password": "123456",
+      "id": 6
+    }
+  ],
+  "profiles": [
+    {
+      "email": "nhut@gmail.com",
+      "fullName": "Quoc Nhut",
+      "role": 3,
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "email": "loc@gmail.com",
+      "fullName": "Phu Loc",
+      "role": 2,
+      "id": 2,
+      "userId": 2
+    },
+    {
+      "email": "quan@gmail.com",
+      "fullName": "Thanh Quan",
+      "role": 1,
+      "id": 3,
+      "userId": 3
+    },
+    {
+      "email": "anh@gmail.com",
+      "fullName": "Quoc Anh",
+      "role": 1,
+      "id": 4
+    },
+    {
+      "email": "khuong@gmail.com",
+      "fullName": "Duy Khuong",
+      "role": 1,
+      "id": 5,
+      "userId": 5
+    },
+    {
+      "email": "dai@gmail.com",
+      "fullName": "Ba Dai",
+      "role": 1,
+      "id": 6,
+      "userId": 6
+    }
+  ]
+}

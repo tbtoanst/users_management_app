@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { GlobalDataService } from 'src/app/core/services/common';
+import { PROFILE } from 'src/app/models/auth';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'user-table',
@@ -6,9 +9,24 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
+  private readonly userRoles = environment?.userRoles;
+  @Input() userList!: PROFILE[];
+  @Output() update = new EventEmitter<PROFILE>();
+  @Output() delete = new EventEmitter<PROFILE>();
 
-  constructor() {}
+  constructor(private globalData: GlobalDataService) {}
 
   ngOnInit(): void {}
+  visualizeUserRole(roleIndex: number | undefined): string {
+    return this.userRoles[roleIndex ? roleIndex : 0];
+  }
+  // AVOID TO DELETE CURRENT USER
+  isOwner(user: PROFILE): boolean {
+    return this.globalData.currentUser$.getValue()?.id === user?.id;
+  }
+  // FOR LOOP PERFORMANCE
+  trackByFn(index: number, user: PROFILE): number {
+    return user?.id;
+  }
   
 }

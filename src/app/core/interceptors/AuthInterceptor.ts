@@ -9,8 +9,8 @@ import {
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-// SERVICES
-import { LoadingSpinnerService } from '@core/services/common';
+import { LoadingSpinnerService } from '../services/common';
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
