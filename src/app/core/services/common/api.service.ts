@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HTTP_REQ, HTTP_RES } from 'src/app/models/common';
 import { environment } from 'src/environments/environment';
-import { shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { shareReplay } from 'rxjs/operators';
 export class ApiService {
   private readonly apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  // GET REQUEST
+  // get api
   public async get(httpData: HTTP_REQ):Promise<HTTP_RES> {
     try {
       const httpOptions = this.generateHttpOptions(
@@ -26,7 +26,7 @@ export class ApiService {
       return { success: false, data: null, error };
     }
   }
-  // POST REQUEST
+  // post api
   public async post(httpData: HTTP_REQ) {
     try {
       const httpOptions = this.generateHttpOptions(
@@ -42,7 +42,7 @@ export class ApiService {
       return { success: false, data: null, error };
     }
   }
-  // PUT REQUEST
+  // put api
   public async put(httpData: HTTP_REQ) {
     try {
       const httpOptions = this.generateHttpOptions(
@@ -58,7 +58,7 @@ export class ApiService {
       return { success: false, data: null, error };
     }
   }
-  // DELETE REQUEST
+  // delete api
   public async delete(httpData: HTTP_REQ) {
     try {
       const result: any = await this.http
@@ -70,7 +70,7 @@ export class ApiService {
       return { success: false, data: null, error };
     }
   }
-  // DYNAMIC HTTP OPTIONS
+  // dynamic http option
   private generateHttpOptions(params: any, headers: any) {
     const httpOptions: any = {};
     if (params) {

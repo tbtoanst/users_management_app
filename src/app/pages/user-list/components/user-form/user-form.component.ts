@@ -6,11 +6,11 @@ import { PROFILE } from 'src/app/models/auth';
 
 
 @Component({
-  selector: 'user-from',
-  templateUrl: './user-from.component.html',
-  styleUrls: ['./user-from.component.scss'],
+  selector: 'user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss'],
 })
-export class UserFromComponent implements OnInit {
+export class UserFormComponent implements OnInit {
   @Input() userData!: PROFILE;
   readonly userRoles = [
     { val: 1, viewVal: 'Customer' },

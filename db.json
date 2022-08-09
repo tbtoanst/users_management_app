@@ -2,12 +2,12 @@
   "users": [
     {
       "email": "nhut@gmail.com",
-      "password": "123456",
+      "password": "$2a$10$TcZPIQWMZR4cEbcUR/mM6umq404RPomkSmAR4hxghTdHdXzGfDvC2",
       "id": 1
     },
     {
       "email": "loc@gmail.com",
-      "password": "123456",
+      "password": "$2a$10$qeUAuo4rc44UG2r28pHpTePwQJdCkHuo5Y6r5bXybngeFBfyGbSiO",
       "id": 2
     },
     {
@@ -29,6 +29,11 @@
       "email": "dai@gmail.com",
       "password": "123456",
       "id": 6
+    },
+    {
+      "email": "khoi@gmail.com",
+      "password": "$2a$10$DenFVrWFWcaiwb3.N3atIu3dT8z9JOm5Rsu60UNZTvCQmUSdeUZWq",
+      "id": "3c94d32f-7874-4e3b-bff4-834ce30c11da"
     }
   ],
   "profiles": [
@@ -47,31 +52,11 @@
       "userId": 2
     },
     {
-      "email": "quan@gmail.com",
-      "fullName": "Thanh Quan",
+      "userId": "3c94d32f-7874-4e3b-bff4-834ce30c11da",
+      "email": "khoi@gmail.com",
+      "fullName": "Tran The Khoi",
       "role": 1,
-      "id": 3,
-      "userId": 3
-    },
-    {
-      "email": "anh@gmail.com",
-      "fullName": "Quoc Anh",
-      "role": 1,
-      "id": 4
-    },
-    {
-      "email": "khuong@gmail.com",
-      "fullName": "Duy Khuong",
-      "role": 1,
-      "id": 5,
-      "userId": 5
-    },
-    {
-      "email": "dai@gmail.com",
-      "fullName": "Ba Dai",
-      "role": 1,
-      "id": 6,
-      "userId": 6
+      "id": 7
     }
   ]
 }

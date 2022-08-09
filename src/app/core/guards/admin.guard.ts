@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth';
 })
 export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
-  // CHECK IF IS ADMIN FROM SERVER
+  // check role
   private async isAdmin(): Promise<boolean | UrlTree> {
     const currentUser = await this.authService.userProfile();
     const userIsAdmin = currentUser && currentUser?.role > 1 ? true : false;

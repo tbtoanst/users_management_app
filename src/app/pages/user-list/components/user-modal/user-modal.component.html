@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{ data ? "Edit User" : "Add New User" }}</h1>
 <div mat-dialog-content>
-  <user-from #userForm [userData]="data"></user-from>
+  <user-form #userForm [userData]="data"></user-form>
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button type="button" color="warn" mat-dialog-close>Cancel</button>

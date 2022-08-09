@@ -1,4 +1,4 @@
-<mat-card class="home-card my-3">
+<mat-card class="home-card">
     <ng-container *ngIf="currentUser$ | async as currentUser">
       <mat-card-header *ngIf="currentUser">
         <div mat-card-avatar class="home-header-image"></div>
@@ -8,7 +8,13 @@
     </ng-container>
   
     <mat-card-content>
-      This is Home page
+      <div class="background-dashboard">
+        <img
+          src="/assets/images/background-dashboard.png"
+          alt="site-logo"
+          loading="lazy"
+        />
+      </div>
     </mat-card-content>
   </mat-card>
   

@@ -1,4 +1,9 @@
 <navbar></navbar>
-<div class="container pb-5">
-  <router-outlet></router-outlet>
+<div class="container d-flex flex-row pb-5">
+  <div class="left-layout">
+    <app-menu-bar></app-menu-bar>
+  </div>
+  <div class="right-layout" >
+    <router-outlet></router-outlet>
+  </div>
 </div>

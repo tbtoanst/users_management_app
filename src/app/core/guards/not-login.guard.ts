@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class NotLoginGuard implements CanActivate {
   constructor(private cookieService: CookieService, private router: Router) {}
-  // CHECK IF NOT LOGGED
+  // check status not logged
   get checkAuth() {
     const isNotLogged = this.cookieService.get('authToken') ? false : true;
     if (!isNotLogged) {

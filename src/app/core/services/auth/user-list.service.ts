@@ -14,7 +14,7 @@ export class UserListService {
     private snackMessage: SnackMessageService,
     private globalDataService: GlobalDataService
   ) {}
-  // LIST USERS
+  // get users
   async getAllUsers(): Promise<PROFILE[]> {
     const currentUser: PROFILE | null =
       this.globalDataService.currentUser$.getValue();
@@ -33,12 +33,12 @@ export class UserListService {
       return [];
     }
   }
-  // ADD NEW USER
+  // add new user
   async addNewUser(
     formData: REGISTER_FORM_DATA
   ): Promise<{ success: boolean; user: PROFILE }> {
     const userUUID = uuidv4();
-    // REGISTER USER
+    // register user
     const httpData: HTTP_REQ = {
       url: 'register',
       body: {
@@ -49,7 +49,7 @@ export class UserListService {
     };
     const { success, data, error } = await this.apiService.post(httpData);
     if (success && data?.accessToken) {
-      // IF USER REGISTERED SUCCESSFULLY THEN CREATE PROFILE DATA
+      // if user register successfully then create profile data
       const profileHttpData: HTTP_REQ = {
         url: 'profiles',
         body: {
@@ -109,16 +109,16 @@ export class UserListService {
       return { success: false, user: data };
     }
   }
-  // LIST USERS WITH ROLE
+  // list users with role
   private getRoleLTE(userRole: number | undefined) {
     switch (userRole) {
-      // SUPER ADMIN CAN LIST ALL
+      // super admin can list all
       case 3:
         return 3;
-      // ADMIN CAN LIST USERS
+      // admin can list users
       case 2:
         return 1;
-      // OTHERS CANT LIST
+      // other can't list
       default:
         return -1;
     }

@@ -18,7 +18,7 @@ export class AuthService {
     private snackMessage: SnackMessageService,
     private globalDataService: GlobalDataService
   ) {}
-  // REGISTER
+  // register service
   async register(formData: REGISTER_FORM_DATA) {
     delete formData.passwordConfirm;
     // ! JSON SERVER NOT RETURN ID VALUE
@@ -34,8 +34,6 @@ export class AuthService {
     const { success, data, error } = await this.apiService.post(httpData);
 
     if (success && data?.accessToken) {
-      // ! JSON AUTH SERVER HAS NOT PUT OR DELETE FOR USERS SCHEMA
-      // ! ADDITIONAL INFO WILL BE SAVE IN PROFILES SCHEMA
       this.setCookies(data?.accessToken, formData?.email);
 
       const profileHttpData: HTTP_REQ = {
@@ -57,7 +55,7 @@ export class AuthService {
       });
     }
   }
-  // LOGIN
+  // login service
   async login(formData: LOGIN_FORM_DATA) {
     const httpData: HTTP_REQ = { url: 'login', body: formData };
     const { success, data, error } = await this.apiService.post(httpData);

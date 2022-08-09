@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginGuard implements CanActivate {
   constructor(private cookieService: CookieService, private router: Router) {}
-  // CHECK IF LOGGED
+  // check status logged
   get checkAuth() {
     const isLogged = this.cookieService.get('authToken') ? true : false;
     if (!isLogged) {

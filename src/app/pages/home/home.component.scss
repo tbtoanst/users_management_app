@@ -1,6 +1,15 @@
 .home-card {
-    .home-header-image {
-      background-image: url("/assets/icons/icon-96x96.png");
-      background-size: cover;
+  width: 100%;
+  .home-header-image {
+    background-image: url("/assets/icons/icon_user.png");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+  }
+  .background-dashboard{
+    img{
+      width: 100%;
+      padding: 10px;
     }
   }
+}
