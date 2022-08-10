@@ -34,16 +34,19 @@
       "email": "khoi@gmail.com",
       "password": "$2a$10$DenFVrWFWcaiwb3.N3atIu3dT8z9JOm5Rsu60UNZTvCQmUSdeUZWq",
       "id": "3c94d32f-7874-4e3b-bff4-834ce30c11da"
+    },
+    {
+      "email": "toan@gmail.com",
+      "password": "$2a$10$PjpQ0CZSFWTOrK85LGxTKeZaTyTskneYobucCLsMRsQ5m4MgxjKq6",
+      "id": "bd0a062a-05df-4925-9b36-1ee4f7660348"
+    },
+    {
+      "email": "nhuttq@gmail.com",
+      "password": "$2a$10$N00fRIlJA32bFHQJq29Fqeg0np7FB6dI62lgzcpb5tikGL25wtCuO",
+      "id": "70a0eaed-95d7-4919-a783-ff671fd20e29"
     }
   ],
   "profiles": [
-    {
-      "email": "nhut@gmail.com",
-      "fullName": "Quoc Nhut",
-      "role": 3,
-      "id": 1,
-      "userId": 1
-    },
     {
       "email": "loc@gmail.com",
       "fullName": "Phu Loc",
@@ -57,6 +60,20 @@
       "fullName": "Tran The Khoi",
       "role": 1,
       "id": 7
+    },
+    {
+      "userId": "bd0a062a-05df-4925-9b36-1ee4f7660348",
+      "email": "toan@gmail.com",
+      "fullName": "Trinh Bao Toan",
+      "role": 3,
+      "id": 8
+    },
+    {
+      "userId": "70a0eaed-95d7-4919-a783-ff671fd20e29",
+      "email": "nhuttq@gmail.com",
+      "fullName": "Truong Quoc Nhut",
+      "role": 2,
+      "id": 9
     }
   ]
 }
