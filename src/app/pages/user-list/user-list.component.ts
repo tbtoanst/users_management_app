@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { UserListService } from 'src/app/core/services/auth';
 import { SnackMessageService } from 'src/app/core/services/notification';
 import { PROFILE } from 'src/app/models/auth';
+import { GetUsers } from 'src/app/store/actions/user.actions';
+import { selectUserList } from 'src/app/store/selectors/user.selectors';
+import { IAppState } from 'src/app/store/states/app.state';
 import { UserModal } from './components';
 
 @Component({
@@ -12,14 +17,19 @@ import { UserModal } from './components';
 })
 export class UserListComponent implements OnInit {
   userList!: PROFILE[];
+  users$: Observable<PROFILE[]> 
   constructor(
     private userListService: UserListService,
     private dialog: MatDialog,
-    private messageService: SnackMessageService
-  ) {}
+    private messageService: SnackMessageService,
+    private _store: Store<IAppState>
+  ) {
+    this.users$ = this._store.pipe(select(selectUserList));
+  }
 
   async ngOnInit() {
     this.userList = await this.userListService.getAllUsers();
+    this._store.dispatch(new GetUsers());
   }
   async createNewUser() {
     try {

@@ -12,7 +12,7 @@
   <ng-container *ngIf="userList && userList.length">
     <ng-container *ngIf="userList.length > 0; else noItemTemplate">
       <user-table
-        [userList]="userList"
+        [users]="users$ | async"
         (update)="updateUser($event)"
         (delete)="deleteUser($event)"
       ></user-table>

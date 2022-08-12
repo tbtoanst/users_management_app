@@ -11,10 +11,13 @@ import { environment } from 'src/environments/environment';
 export class UserTableComponent implements OnInit {
   private readonly userRoles = environment?.userRoles;
   @Input() userList!: PROFILE[];
+  @Input() users: PROFILE[] | null;
   @Output() update = new EventEmitter<PROFILE>();
   @Output() delete = new EventEmitter<PROFILE>();
 
-  constructor(private globalData: GlobalDataService) {}
+  constructor(private globalData: GlobalDataService) {
+    this.users = []
+  }
 
   ngOnInit(): void {}
   visualizeUserRole(roleIndex: number | undefined): string {

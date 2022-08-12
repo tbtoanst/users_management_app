@@ -7,6 +7,8 @@ import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/reducers/app.reducers';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { CoreModule } from './core/core.module';
     NgbModule,
     BrowserAnimationsModule,
     CoreModule,
+    StoreModule.forRoot(appReducers)
   ],
   providers: [],
   bootstrap: [AppComponent]

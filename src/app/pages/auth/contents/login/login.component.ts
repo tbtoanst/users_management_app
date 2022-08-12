@@ -41,7 +41,12 @@ export class LoginComponent implements OnInit {
     private formValidationService: FormValidationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.login({
+      email: 'toan@gmail.com',
+      password: '12345@Aa'
+    });
+  }
   // FIELD ERROR
   fieldHasError(fieldName: string): boolean {
     return this.formValidationService.fieldHasError(fieldName, this.loginForm);
