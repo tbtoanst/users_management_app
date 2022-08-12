@@ -1,7 +1,9 @@
+import { Store } from '@ngrx/store';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { UserListService } from 'src/app/core/services/auth';
-import { PROFILE } from 'src/app/models/auth';
+import { PROFILE, USERINFOSTATE } from 'src/app/models/auth';
 
 
 @Component({
@@ -10,12 +12,12 @@ import { PROFILE } from 'src/app/models/auth';
   styleUrls: ['./user-modal.component.scss'],
 })
 export class UserModalComponent implements OnInit {
-
   constructor(
     private userListService: UserListService,
     private dialogRef: MatDialogRef<UserModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PROFILE
-  ) {}
+  ) {
+  }
   async save(formData: any) {
     const { success, user } = this.data
       ? await this.userListService.updateUser({

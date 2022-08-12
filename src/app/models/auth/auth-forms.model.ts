@@ -7,3 +7,6 @@ export interface REGISTER_FORM_DATA extends LOGIN_FORM_DATA{
     passwordConfirm?:string;
     role?:number;
 }
+
+
+

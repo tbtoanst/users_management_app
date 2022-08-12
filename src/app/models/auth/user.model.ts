@@ -7,3 +7,4 @@ export interface PROFILE extends USER {
     fullName: string;
     role: number;
 }
+
