@@ -6,7 +6,7 @@ import { PROFILE } from 'src/app/models/auth';
 
 
 @Component({
-  selector: 'user-form',
+  selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
 })

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { UserListService } from 'src/app/core/services/auth';
 import { SnackMessageService } from 'src/app/core/services/notification';
 import { PROFILE } from 'src/app/models/auth';
-import { GetUsers } from 'src/app/store/actions/user.actions';
-import { selectUserList } from 'src/app/store/selectors/user.selectors';
-import { IAppState } from 'src/app/store/states/app.state';
+import { deleteUser } from 'src/app/store/actions/user.actions';
+import { selectAllUsers } from 'src/app/store/selectors/user.selectors';
 import { UserModal } from './components';
 
 @Component({
@@ -16,27 +15,28 @@ import { UserModal } from './components';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  userList!: PROFILE[];
+  // userList!: PROFILE[];
   users$: Observable<PROFILE[]> 
   constructor(
     private userListService: UserListService,
     private dialog: MatDialog,
     private messageService: SnackMessageService,
-    private _store: Store<IAppState>
+    private _store: Store
   ) {
-    this.users$ = this._store.pipe(select(selectUserList));
+    this.users$ = _store.select(selectAllUsers);
   }
 
   async ngOnInit() {
-    this.userList = await this.userListService.getAllUsers();
-    this._store.dispatch(new GetUsers());
+    // this.userList = await this.userListService.getAllUsers();
+    // this._store.dispatch(new GetUsers());
+    console.log()
   }
   async createNewUser() {
     try {
       const { success, userData } = await this.openUserModal();
-      if (success) {
-        this.userList.push(userData);
-      }
+      // if (success) {
+      //   this.userList.push(userData);
+      // }
     } catch (error: any) {
       this.messageService.show({
         message: error?.message || 'An error occoured when creating new user',
@@ -48,16 +48,16 @@ export class UserListComponent implements OnInit {
     try {
       const { success, userData } = await this.openUserModal(user);
       if (success) {
-        const userIndex = this.userList.findIndex(
-          (usr) => usr?.id === user?.id
-        );
-        if (userIndex >= 0) {
-          this.userList[userIndex] = userData;
-          this.messageService.show({
-            message: `User (${userData?.fullName}) has been updated successfully`,
-            duration: 4000,
-          });
-        }
+        // const userIndex = this.userList.findIndex(
+        //   (usr) => usr?.id === user?.id
+        // );
+        // if (userIndex >= 0) {
+        //   this.userList[userIndex] = userData;
+        //   this.messageService.show({
+        //     message: `User (${userData?.fullName}) has been updated successfully`,
+        //     duration: 4000,
+        //   });
+        // }
       }
     } catch (error: any) {
       this.messageService.show({
@@ -66,18 +66,20 @@ export class UserListComponent implements OnInit {
     }
   }
   async deleteUser(userData: PROFILE) {
-    const { success } = await this.userListService.deleteUser(userData?.id);
-    if (success) {
-      const userIndex = this.userList.findIndex(
-        (usr) => usr.id === userData?.id
-      );
-      if (userIndex >= 0) {
-        this.userList.splice(userIndex, 1);
-        this.messageService.show({
-          message: `User (${userData?.fullName}) has been removed successfully`,
-        });
-      }
-    }
+    // const { success } = await this.userListService.deleteUser(userData?.id);
+    // if (success) {
+    //   const userIndex = this.userList.findIndex(
+    //     (usr) => usr.id === userData?.id
+    //   );
+    //   if (userIndex >= 0) {
+    //     this.userList.splice(userIndex, 1);
+    //     this.messageService.show({
+    //       message: `User (${userData?.fullName}) has been removed successfully`,
+    //     });
+    //   }
+    // }
+
+    this._store.dispatch(deleteUser(userData));
   }
   // OPEN MODAL WITH SOME CONFIGRATION
   private async openUserModal(user?: PROFILE) {

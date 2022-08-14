@@ -1,46 +1,44 @@
-<div class="toolbar-navigation">
-    <ng-container *ngIf="currentUser | async as user;else noUser">
-        <div>
+<div id="menu">
+    <ul class="menu">
+        <li class="marker">
             <a
-            mat-icon-button
             [routerLink]="['/']"
             color="primart"
             >
+            <mat-icon class="leftIcon">home</mat-icon>
             HOME
             </a>
-        </div>
-        <div>
+        </li>
+        <li class="marker">
             <a
-                mat-icon-button
                 [routerLink]="['/user-list']"
                 color="primart"
-                *ngIf="user.role>1"
             >
+            <mat-icon class="leftIcon">supervised_user_circle</mat-icon>
                 USERS
             </a>
-        </div>
-        <div>
+        </li>
+        <li class="marker">
             <a
-                mat-icon-button
                 [routerLink]="['/**']"
                 color="primart"
-                *ngIf="user.role>1"
             >
+            <mat-icon class="leftIcon">error</mat-icon>
                 PAGE NOT FOUND
             </a>
-        </div>
+        </li>
         <!-- USER MENU -->
-        <div>
-            <button
-                mat-icon-button
-                aria-label="User Menu"
+        <li class="marker">
+            <a
+                href=""
                 (click)="logOut()"
             >
+            <mat-icon class="leftIcon">power_settings_new</mat-icon>
                 LOGOUT
-            </button>
-        </div>
-    </ng-container>
-    <ng-template #noUser>
+            </a>
+        </li>
+    </ul>
+    <!-- <ng-template #noUser>
         <button
             mat-icon-button
             [matMenuTriggerFor]="menu"
@@ -58,7 +56,7 @@
             <span>Logout</span>
             </button>
         </mat-menu>
-    </ng-template>
+    </ng-template> -->
 </div>
 
   

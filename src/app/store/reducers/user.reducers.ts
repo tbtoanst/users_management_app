@@ -1,30 +1,29 @@
-import { EUserActions, UserActions } from "../actions/user.actions";
-import { initialUserState, IUserState } from "../states/user.state";
+import { addNewUser, deleteUser, updateUser } from "../actions/user.actions";
+import { initialUserState } from "../states/user.state";
+import { createReducer, on } from '@ngrx/store'
+import { PROFILE } from "src/app/models/auth";
 
-export const userReducers = (
-    state = initialUserState,
-    action: UserActions)
-    : IUserState => {
-    switch (action.type) {
-        case EUserActions.GetUsersSuccess: {
-            return {
-                ...state,
-                users: action.payload
-            }
+export const userReducers = createReducer(
+    initialUserState,
+    on(addNewUser, (entries , user) => {
+        const entriesClone: PROFILE[] = JSON.parse(JSON.stringify(entries))
+        entriesClone.push(user);
+        return entriesClone
+    }),
+    on(deleteUser, (entries , user) => {
+        const entriesClone: PROFILE[] = JSON.parse(JSON.stringify(entries))
+        const found = entriesClone.find(e => e.id = user.id);
+        if(found){
+            entriesClone.splice(entriesClone.indexOf(found), 1)
         }
-        case EUserActions.AddNewUser: {
-            return {
-                ...state,
-                users: [...state.users, action.payload]
-            }
+        return entriesClone
+    }),
+    on(updateUser, (entries , user) => {
+        const entriesClone: PROFILE[] = JSON.parse(JSON.stringify(entries))
+        const found = entriesClone.find(e => e.id = user.id);
+        if(found){
+            entriesClone[entriesClone.indexOf(found)] = JSON.parse(JSON.stringify(user))
         }
-        case EUserActions.AddNewUserSuccess: {
-            return {
-                ...state,
-                users: action.payload
-            }
-        }
-        default:
-            return state;
-    }
-    }
+        return entriesClone
+    }),
+)

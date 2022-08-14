@@ -4,22 +4,28 @@ import { PROFILE } from 'src/app/models/auth';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'user-table',
+  selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
+
+
 export class UserTableComponent implements OnInit {
   private readonly userRoles = environment?.userRoles;
-  @Input() userList!: PROFILE[];
   @Input() users: PROFILE[] | null;
   @Output() update = new EventEmitter<PROFILE>();
   @Output() delete = new EventEmitter<PROFILE>();
-
+  displayedColumns: string[] = ['', '', 'fullname', 'username', 'role'];
+  dataSource: any
   constructor(private globalData: GlobalDataService) {
     this.users = []
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log()
+    this.dataSource = this.users
+  }
+
   visualizeUserRole(roleIndex: number | undefined): string {
     return this.userRoles[roleIndex ? roleIndex : 0];
   }

@@ -9,13 +9,13 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
-  <ng-container *ngIf="userList && userList.length">
-    <ng-container *ngIf="userList.length > 0; else noItemTemplate">
-      <user-table
+  <ng-container *ngIf="users$">
+    <ng-container *ngIf="users$; else noItemTemplate">
+      <app-user-table
         [users]="users$ | async"
         (update)="updateUser($event)"
         (delete)="deleteUser($event)"
-      ></user-table>
+      ></app-user-table>
     </ng-container>
     <ng-template #noItemTemplate>
       <div class="alert alert-warning">

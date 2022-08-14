@@ -1,10 +1,9 @@
-import { createSelector } from "@ngrx/store";
-import { IAppState } from "../states/app.state";
-import { IUserState } from "../states/user.state";
+import { PROFILE } from "src/app/models/auth";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 
-const selectUsers = (state: IAppState) => state.users
-
-export const selectUserList = createSelector(
-    selectUsers,
-    (state: IUserState) => state.users
+export const selectAllUsers = createSelector(
+    createFeatureSelector('users'),
+    (state: PROFILE[]) => {
+        return state
+    }
 )

@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
-import { appReducers } from './store/reducers/app.reducers';
+import { userReducers } from './store/reducers/user.reducers';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { appReducers } from './store/reducers/app.reducers';
     NgbModule,
     BrowserAnimationsModule,
     CoreModule,
-    StoreModule.forRoot(appReducers)
+    StoreModule.forRoot({users: userReducers})
   ],
   providers: [],
   bootstrap: [AppComponent]
