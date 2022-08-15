@@ -8,5 +8,9 @@ export interface REGISTER_FORM_DATA extends LOGIN_FORM_DATA{
     role?:number;
 }
 
+export interface IErrorMessage<T>{
+    [key: string]: T
+}
+
 
 

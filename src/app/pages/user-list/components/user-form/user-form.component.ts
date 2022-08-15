@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { GlobalDataService } from 'src/app/core/services/common';
 import { FormValidationService } from 'src/app/core/services/form';
 import { PROFILE } from 'src/app/models/auth';
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -34,7 +35,11 @@ export class UserFormComponent implements OnInit {
   }
   // GET USER FORM DATA
   get getFormData() {
-    return { ...this.userForm.value, role: this.userForm.value?.role || 1 };
+    return {
+      ...this.userForm.value,
+      role: this.userForm.value?.role || 1,
+      userId: uuidv4()
+    };
   }
   // USER FORM PROPERTIES
   private get inituserForm() {
@@ -66,9 +71,12 @@ export class UserFormComponent implements OnInit {
           },
           [
             Validators.required,
-            Validators.email,
+            // Validators.email,
             Validators.minLength(5),
             Validators.maxLength(30),
+            Validators.pattern(
+              '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+            )
           ]
         ),
         role: new FormControl(this.userData?.role || '', []),

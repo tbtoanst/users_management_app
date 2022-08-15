@@ -15,7 +15,7 @@ import { addNewUser, updateUser } from 'src/app/store/actions/user.actions';
 })
 export class UserModalComponent implements OnInit {
   constructor(
-    private userListService: UserListService,
+    // private userListService: UserListService,
     private dialogRef: MatDialogRef<UserModalComponent>,
     private _store: Store,
     @Inject(MAT_DIALOG_DATA) public data: PROFILE
@@ -28,7 +28,7 @@ export class UserModalComponent implements OnInit {
               role: formData?.role,
             }))
     : this._store.dispatch(addNewUser(formData));
-    this.dialogRef.close({ success: true });
+    this.dialogRef.close({ success: true, data: formData });
   }
   ngOnInit(): void {
     console.log()

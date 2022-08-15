@@ -14,6 +14,8 @@ import { Menubar, Navbar } from '../shared/components';
 import { UserForm, UserModal, UserTable } from './user-list/components';
 import { UserListComponent as UserListPage } from './user-list/user-list.component';
 import { HomeComponent as HomePage } from './home/home.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -38,7 +40,9 @@ import { HomeComponent as HomePage } from './home/home.component';
     MatSelectModule,
     MatToolbarModule,
     MatTooltipModule,
-    // MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class PagesModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { UserListService } from 'src/app/core/services/auth';
 import { SnackMessageService } from 'src/app/core/services/notification';
 import { PROFILE } from 'src/app/models/auth';
@@ -16,7 +16,8 @@ import { UserModal } from './components';
 })
 export class UserListComponent implements OnInit {
   // userList!: PROFILE[];
-  users$: Observable<PROFILE[]> 
+  users$: Observable<PROFILE[]>;
+  userCount = 0;
   constructor(
     private userListService: UserListService,
     private dialog: MatDialog,
@@ -27,16 +28,18 @@ export class UserListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // this.userList = await this.userListService.getAllUsers();
-    // this._store.dispatch(new GetUsers());
-    console.log()
+    this.users$.forEach((users) => this.userCount = users.length)
   }
   async createNewUser() {
     try {
-      const { success, userData } = await this.openUserModal();
-      // if (success) {
-      //   this.userList.push(userData);
-      // }
+      const { success, data } = await this.openUserModal();
+      if (success) {
+        // if (userIndex >= 0) {
+          this.messageService.show({
+            message: `User ${data?.email} has been added successfully`,
+            duration: 4000,
+          });
+      }
     } catch (error: any) {
       this.messageService.show({
         message: error?.message || 'An error occoured when creating new user',
@@ -46,18 +49,12 @@ export class UserListComponent implements OnInit {
 
   async updateUser(user: PROFILE) {
     try {
-      const { success, userData } = await this.openUserModal(user);
+      const { success, data } = await this.openUserModal(user);
       if (success) {
-        // const userIndex = this.userList.findIndex(
-        //   (usr) => usr?.id === user?.id
-        // );
-        // if (userIndex >= 0) {
-        //   this.userList[userIndex] = userData;
-        //   this.messageService.show({
-        //     message: `User (${userData?.fullName}) has been updated successfully`,
-        //     duration: 4000,
-        //   });
-        // }
+        this.messageService.show({
+          message: `User ${data?.email} has been updated successfully`,
+          duration: 4000,
+        });
       }
     } catch (error: any) {
       this.messageService.show({
@@ -66,20 +63,20 @@ export class UserListComponent implements OnInit {
     }
   }
   async deleteUser(userData: PROFILE) {
-    // const { success } = await this.userListService.deleteUser(userData?.id);
-    // if (success) {
-    //   const userIndex = this.userList.findIndex(
-    //     (usr) => usr.id === userData?.id
-    //   );
-    //   if (userIndex >= 0) {
-    //     this.userList.splice(userIndex, 1);
-    //     this.messageService.show({
-    //       message: `User (${userData?.fullName}) has been removed successfully`,
-    //     });
-    //   }
-    // }
-
-    this._store.dispatch(deleteUser(userData));
+    let userIndex = -1;
+    this.users$.forEach((users) => {
+      userIndex = users.findIndex(user => user.id == userData?.id)
+    });
+    if (userIndex >= 0) {
+      this._store.dispatch(deleteUser(userData));
+    this.messageService.show({
+            message: `User ${userData?.fullName} has been removed successfully`,
+          });
+    } else { 
+      this.messageService.show({
+        message: `Can not found ${userData?.fullName}`,
+      });
+    }
   }
   // OPEN MODAL WITH SOME CONFIGRATION
   private async openUserModal(user?: PROFILE) {
@@ -89,6 +86,6 @@ export class UserListComponent implements OnInit {
       data: user,
       disableClose: true,
     });
-    return await userDialog.afterClosed().toPromise();
+    return await lastValueFrom(userDialog.afterClosed());
   }
 }
