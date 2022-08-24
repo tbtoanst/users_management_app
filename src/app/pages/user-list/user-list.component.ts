@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.users$.forEach((users) => this.userCount = users.length)
+    this.users$.subscribe((users) => this.userCount = users.length)
   }
   async createNewUser() {
     try {
